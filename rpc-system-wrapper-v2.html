@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0F172A" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>RPC System | Fun Run - Road to Sound Pace N Bass</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      background-color: #0F172A;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .iframe-container {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100dvh;
+      border: 0;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="iframe-container">
+    <iframe
+      id="rpcAppFrame"
+      allow="camera; microphone; fullscreen; clipboard-read; clipboard-write"
+      sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads"
+      title="RPC Sound Pace N Bass"
+    ></iframe>
+  </div>
+
+  <script>
+    // Production Google Apps Script /exec URL:
+    const GAS_EXEC_URL = "https://script.google.com/macros/s/AKfycbw9GWwaiiAdoumBHq5li1pyU3550J3b7tXhlrm0cW0wRdY_D3PT8FlWyPd4CuFV20QNnQ/exec";
+
+    (function initRpcWrapper() {
+      const params = new URLSearchParams(window.location.search);
+      const page = params.get("page");
+      const targetUrl = page
+        ? `${GAS_EXEC_URL}?page=${encodeURIComponent(page)}`
+        : GAS_EXEC_URL;
+      document.getElementById("rpcAppFrame").src = targetUrl;
+    })();
+  </script>
+</body>
+</html>
